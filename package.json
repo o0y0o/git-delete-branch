@@ -1,6 +1,6 @@
 {
   "name": "@shinin/git-delete-branch",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Delete Git branches with interactive CLI",
   "bin": {
     "git-delete-branch": "cli.js"
@@ -11,6 +11,10 @@
     "cli",
     "terminal"
   ],
+  "repository": "https://github.com/shiningjason/git-delete-branch",
+  "publishConfig": {
+    "access": "public"
+  },
   "author": "Jason Chung <shiningjason1989@gmail.com>",
   "license": "MIT",
   "dependencies": {
