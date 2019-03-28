@@ -5,6 +5,12 @@
   "bin": {
     "git-delete-branch": "cli.js"
   },
+  "keywords": [
+    "git",
+    "git branch",
+    "cli",
+    "terminal"
+  ],
   "author": "Jason Chung <shiningjason1989@gmail.com>",
   "license": "MIT",
   "dependencies": {
