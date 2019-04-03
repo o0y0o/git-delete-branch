@@ -18,6 +18,7 @@
   "author": "Jason Chung <shiningjason1989@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "chalk": "^2.4.2",
     "inquirer": "^6.2.2",
     "simple-git": "^1.110.0"
   },

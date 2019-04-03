@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+const chalk = require('chalk')
 const inquirer = require('inquirer')
 const git = require('simple-git/promise')
 
@@ -58,15 +59,23 @@ function startSpinner() {
 
   const stopSpinner = startSpinner()
   try {
-    const tasks = willDeleteBranches.map(branch => {
-      const matches = /^remotes\/([^/]+)\/(.*)/.exec(branch)
-      if (!matches) return repo.branch(['-D', branch])
-      const [, remoteName, localName] = matches
-      return repo.push(remoteName, ':' + localName)
+    const tasks = willDeleteBranches.map(async branch => {
+      try {
+        const matches = /^remotes\/([^/]+)\/(.*)/.exec(branch)
+        if (!matches) {
+          await repo.branch(['-D', branch])
+        } else {
+          const [, remoteName, localName] = matches
+          await repo.push(remoteName, ':' + localName)
+        }
+        return `${branch} ${chalk.green.bold('deleted')}`
+      } catch (error) {
+        return `${branch} ${chalk.red.bold(`error: ${error}`)}`
+      }
     })
-    await Promise.all(tasks)
+    const results = await Promise.all(tasks)
     stopSpinner()
-    console.log(`Branches deleted:\n ${willDeleteBranches.join('\n ')}`)
+    console.log(`Result:\n ${results.join('\n ')}`)
   } catch {
     stopSpinner()
   }
