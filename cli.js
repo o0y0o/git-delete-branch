@@ -4,7 +4,7 @@ const chalk = require('chalk')
 const inquirer = require('inquirer')
 const git = require('simple-git/promise')
 
-function startSpinner() {
+function startSpinner(text) {
   const interval = 80
   const frames = ['⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏']
   let frame = 0
@@ -19,7 +19,7 @@ function startSpinner() {
   hideCursor()
   const spinnerId = setInterval(() => {
     clearSpinner()
-    process.stderr.write(`${frames[frame]} deleting...`)
+    process.stderr.write(`${frames[frame]} ${text}`)
     if (++frame === frames.length) frame = 0
   }, interval)
 
@@ -31,8 +31,12 @@ function startSpinner() {
 }
 
 ;(async () => {
-  const repo = git()
+  const repo = git().silent(true)
+
+  const stopSpinner = startSpinner('fetching...')
+  await repo.fetch(['-a', '-p'])
   const { branches } = await repo.branch()
+  stopSpinner()
 
   const choices = Object.values(branches)
     .map(b => b.name)
@@ -57,26 +61,22 @@ function startSpinner() {
   ])
   if (!didConfirm) return
 
-  const stopSpinner = startSpinner()
-  try {
-    const tasks = willDeleteBranches.map(async branch => {
-      try {
-        const matches = /^remotes\/([^/]+)\/(.*)/.exec(branch)
-        if (!matches) {
-          await repo.branch(['-D', branch])
-        } else {
-          const [, remoteName, localName] = matches
-          await repo.push(remoteName, ':' + localName)
-        }
-        return `${branch} ${chalk.green.bold('deleted')}`
-      } catch (error) {
-        return `${branch} ${chalk.red.bold(`error: ${error}`)}`
+  for (let branch of willDeleteBranches) {
+    const stopSpinner = startSpinner('deleting...')
+    try {
+      const matches = /^remotes\/([^/]+)\/(.*)/.exec(branch)
+      if (!matches) {
+        await repo.branch(['-D', branch])
+      } else {
+        const [, remoteName, localName] = matches
+        await repo.push(remoteName, localName, '--delete')
       }
-    })
-    const results = await Promise.all(tasks)
-    stopSpinner()
-    console.log(`Result:\n ${results.join('\n ')}`)
-  } catch {
-    stopSpinner()
+      stopSpinner()
+      console.log(`${branch} ${chalk.green.bold('Success')}`)
+    } catch (error) {
+      stopSpinner()
+      console.log(`${branch} ${chalk.red.bold(`${error}`)}`)
+    }
   }
+  console.log(chalk.cyan('Done!'))
 })()
