@@ -34,7 +34,7 @@ function startSpinner(text) {
   const repo = git().silent(true)
 
   const stopSpinner = startSpinner('fetching...')
-  await repo.fetch(['-a', '-p'])
+  await repo.fetch(['--all', '-p'])
   const { branches } = await repo.branch()
   stopSpinner()
 
