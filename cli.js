@@ -34,7 +34,7 @@ function startSpinner(text) {
   const repo = git().silent(true)
 
   const stopSpinner = startSpinner('fetching...')
-  await repo.fetch(['--all', '-p'])
+  await repo.fetch({ '--all': null, '-p': null })
   const { branches } = await repo.branch()
   stopSpinner()
 
@@ -69,7 +69,7 @@ function startSpinner(text) {
         await repo.branch(['-D', branch])
       } else {
         const [, remoteName, localName] = matches
-        await repo.push(remoteName, localName, '--delete')
+        await repo.push(remoteName, localName, { '--delete': null })
       }
       stopSpinner()
       console.log(`${branch} ${chalk.green.bold('Success')}`)
