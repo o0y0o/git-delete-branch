@@ -69,7 +69,7 @@ function startSpinner(text) {
         await repo.branch(['-D', branch])
       } else {
         const [, remoteName, localName] = matches
-        await repo.push(remoteName, localName, ['--delete'])
+        await repo.push(remoteName, localName, { '--delete': null })
       }
       stopSpinner()
       console.log(`${branch} ${chalk.green.bold('Success')}`)

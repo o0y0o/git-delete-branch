@@ -1,6 +1,6 @@
 {
   "name": "@shinin/git-delete-branch",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Delete Git branches with interactive CLI",
   "bin": {
     "git-delete-branch": "cli.js"
