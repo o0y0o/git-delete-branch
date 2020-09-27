@@ -1,6 +1,6 @@
 # @0y0/git-delete-branch · [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/o0y0o/git-delete-branch/blob/master/LICENSE) [![npm](https://img.shields.io/npm/v/@0y0/git-delete-branch.svg)](https://www.npmjs.com/package/@0y0/git-delete-branch) ![Package Status](https://github.com/o0y0o/git-delete-branch/workflows/Package/badge.svg)
 
-Delete Git branches with interactive CLI
+`@0y0/git-delete-branch` help you delete Git branches with interactive CLI.
 
 ![demo](https://media.giphy.com/media/24pbIXm2aG5c0lAzdN/giphy.gif)
 
