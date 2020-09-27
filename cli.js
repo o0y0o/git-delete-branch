@@ -31,7 +31,7 @@ function startSpinner(text) {
 }
 
 ;(async () => {
-  const repo = git().silent(true)
+  const repo = git()
 
   const stopSpinner = startSpinner('fetching...')
   await repo.fetch(['--all', '-p'])

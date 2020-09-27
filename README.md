@@ -1,4 +1,4 @@
-# git-delete-branch
+# @0y0/git-delete-branch · [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/o0y0o/git-delete-branch/blob/master/LICENSE) [![npm](https://img.shields.io/npm/v/@0y0/git-delete-branch.svg)](https://www.npmjs.com/package/@0y0/git-delete-branch) ![Package Status](https://github.com/o0y0o/git-delete-branch/workflows/Package/badge.svg)
 
 Delete Git branches with interactive CLI
 
@@ -7,19 +7,17 @@ Delete Git branches with interactive CLI
 ## Installation
 
 ```
-npm install -g @shinin/git-delete-branch
-```
-
-or 
-
-```
-yarn global add @shinin/git-delete-branch
+npm install @0y0/git-delete-branch --global
 ```
 
 ## Usage
 
 Goto your git repo folder
 
+```sh
+git-delete-branch # or `gdb`
 ```
-git-delete-branch
-```
+
+## License
+
+[MIT](https://github.com/o0y0o/git-delete-branch/blob/master/LICENSE)

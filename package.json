@@ -1,9 +1,16 @@
 {
-  "name": "@shinin/git-delete-branch",
-  "version": "1.0.8",
+  "name": "@0y0/git-delete-branch",
+  "version": "1.0.0",
   "description": "Delete Git branches with interactive CLI",
   "bin": {
+    "gdb": "cli.js",
     "git-delete-branch": "cli.js"
+  },
+  "repository": "https://github.com/o0y0o/git-delete-branch",
+  "author": "Jason Chung <shiningjason1989@gmail.com>",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
   },
   "keywords": [
     "git",
@@ -11,19 +18,22 @@
     "cli",
     "terminal"
   ],
-  "repository": "https://github.com/shiningjason/git-delete-branch",
-  "publishConfig": {
-    "access": "public"
+  "scripts": {
+    "format": "prettier --write cli.js",
+    "pkg": "[ $(yarn info $npm_package_name version) != $npm_package_version ] && yarn publish || echo Skip publishing due to v$npm_package_version exist"
   },
-  "author": "Jason Chung <shiningjason1989@gmail.com>",
-  "license": "MIT",
   "dependencies": {
-    "chalk": "^2.4.2",
-    "inquirer": "^6.2.2",
-    "simple-git": "^1.110.0"
+    "chalk": "^4.1.0",
+    "inquirer": "^7.3.3",
+    "simple-git": "^2.20.1"
+  },
+  "devDependencies": {
+    "prettier": "^2.1.2"
   },
   "prettier": {
+    "arrowParens": "avoid",
     "semi": false,
-    "singleQuote": true
+    "singleQuote": true,
+    "trailingComma": "none"
   }
 }
