@@ -28,7 +28,7 @@
     "simple-git": "^2.38.1"
   },
   "devDependencies": {
-    "prettier": "^2.2.1"
+    "prettier": "^2.3.0"
   },
   "prettier": {
     "arrowParens": "avoid",
