@@ -1,6 +1,6 @@
 {
   "name": "@0y0/git-delete-branch",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Delete Git branches with interactive CLI.",
   "bin": {
     "gdb": "cli.js",
